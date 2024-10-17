@@ -1,7 +1,7 @@
 # gtvt(github activity)
 simple github activity tracker based on CLI
 
-this project is solution for project on [roadmap.sh] (https://roadmap.sh/projects/github-user-activity)
+this project is solution for project on [roadmap.sh](https://roadmap.sh/projects/github-user-activity)
 ### install
 
 you must compile the code on you own computer, follow this guide
