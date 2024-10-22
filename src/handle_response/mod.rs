@@ -19,11 +19,16 @@ pub fn handle_response(response: Value, long: usize, status: StatusCode) {
                 match event.as_str() {
                     "CommitCommentEvent" => message = format!("commented on a commit in {}", repo), //1
                     "CreateEvent" => {
-                        let _ref =
-                            from_value::<String>(payload.get("ref").unwrap().clone()).unwrap();
+                        let _ref = from_value::<String>(payload.get("ref").unwrap().clone())
+                            .unwrap_or_default();
                         let ref_type =
                             from_value::<String>(payload.get("ref_type").unwrap().clone()).unwrap();
-                        message = format!("created a {} ({}) in {}", ref_type, _ref, repo);
+
+                        if _ref.is_empty() {
+                            message = format!("create a repository ({})", repo)
+                        } else {
+                            message = format!("created a {} ({}) in {}", ref_type, _ref, repo);
+                        }
                     } //2
                     "DeleteEvent" => {
                         let _ref =
